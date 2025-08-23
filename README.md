@@ -24,7 +24,7 @@ Architecture.
 
 - **Analytics & Querying (Azure Synapse Analytics)** – Star schema modeling, SQL queries for medal tallies, athlete performance, and country comparisons.
 
--**Visualization (Power BI / Looker Studio / Tableau)** – Interactive dashboards showing:
+- **Visualization (Power BI / Looker Studio / Tableau)** – Interactive dashboards showing:
 
   - 🥇 Country medal leaderboards
 
@@ -59,46 +59,51 @@ Architecture.
 - Evolution of Olympic sports & popularity trends
 
   ## 📂 Project Workflow
-flowchart LR
-A[Data Sources] --> B[Azure Data Factory]
-B --> C[Data Lake - Raw Zone]
-C --> D[Azure Databricks - PySpark ETL]
-D --> E[Data Lake - Curated Zone]
-E --> F[Azure Synapse Analytics]
-F --> G[Power BI/Tableau Dashboards]
-Sample Dashboard
+'''flowchart LR
+|-- A[Data Sources] --> B[Azure Data Factory]
+|-- B --> C[Data Lake - Raw Zone]
+|-- C --> D[Azure Databricks - PySpark ETL]
+|-- D --> E[Data Lake - Curated Zone]
+|-- E --> F[Azure Synapse Analytics]
+|-- F --> G[Power BI/Tableau Dashboards]
+
+## Sample Dashboard
 
 (Add screenshots of your Power BI/Tableau dashboards here for visual appeal)
 
-Skills Demonstrated
+## Skills Demonstrated
 
-Cloud Data Engineering (Azure ecosystem)
+- Cloud Data Engineering (Azure ecosystem)
 
-Data Pipeline Orchestration (ADF)
+- Data Pipeline Orchestration (ADF)
 
-Big Data Processing (PySpark, Databricks)
+- Big Data Processing (PySpark, Databricks)
 
-Data Warehousing & Modeling (Synapse, Star Schema)
+- Data Warehousing & Modeling (Synapse, Star Schema)
 
-Business Intelligence & Visualization (Power BI, Tableau, Looker Studio)
+- Business Intelligence & Visualization (Power BI, Tableau, Looker Studio)
 
-SQL Analytics & Optimization
+- SQL Analytics & Optimization
 
-End-to-End Pipeline Development
-Dataset
+- End-to-End Pipeline Development
+
+ ## 📥 Dataset
 
 Source: Olympic Data from Kaggle
  (or IOC APIs / historical repositories)
- 📈 Future Improvements
+ 
+## 📈 Future Improvements
 
-Add real-time ingestion with Azure Event Hub
+Add real-time ingestion with **Azure Event Hub**
 
-Integrate Machine Learning models for athlete performance predictions
+Integrate **Machine Learning models** for athlete performance predictions
 
-Deploy dashboards with Power BI Embedded for wider access
-🤝 Contributing
+Deploy dashboards with **Power BI** Embedded for wider access
+
+## 🤝 Contributing
 
 Pull requests are welcome! For major changes, please open an issue first to discuss what you’d like to change
-📜 License
+
+## 📜 License
 
 This project is licensed under the MIT License.
