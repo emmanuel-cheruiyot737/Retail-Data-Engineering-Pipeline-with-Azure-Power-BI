@@ -12,50 +12,53 @@ Architecture.
 
 ## The solution follows a modern data engineering architecture on Azure:
 
--**Data Source** – Olympic datasets (CSV, JSON, APIs, historical repositories).
+- **Data Source** – Olympic datasets (CSV, JSON, APIs, historical repositories).
 
--**Ingestion (Azure Data Factory)**  – Automated pipelines for data ingestion, scheduling, and monitoring.
+- **Ingestion (Azure Data Factory)**  – Automated pipelines for data ingestion, scheduling, and monitoring.
 
--**Raw Storage (Azure Data Lake Gen2 - Raw Zone)** – Stores unprocessed data for traceability.
+- **Raw Storage (Azure Data Lake Gen2 - Raw Zone)** – Stores unprocessed data for traceability.
 
--**Transformation (Azure Databricks)** – PySpark notebooks for cleaning, joining, and applying business rules (e.g., medal aggregation, athlete demographics).
+- **Transformation (Azure Databricks)** – PySpark notebooks for cleaning, joining, and applying business rules (e.g., medal aggregation, athlete demographics).
 
--**Curated Storage (Azure Data Lake Gen2 - Curated Zone)** – Stores structured and analytics-ready datasets.
+- **Curated Storage (Azure Data Lake Gen2 - Curated Zone)** – Stores structured and analytics-ready datasets.
 
--**Analytics & Querying (Azure Synapse Analytics)** – Star schema modeling, SQL queries for medal tallies, athlete performance, and country comparisons.
+- **Analytics & Querying (Azure Synapse Analytics)** – Star schema modeling, SQL queries for medal tallies, athlete performance, and country comparisons.
 
 -**Visualization (Power BI / Looker Studio / Tableau)** – Interactive dashboards showing:
 
-## 🥇 Country medal leaderboards
+-** 🥇 Country medal leaderboards
 
-👩‍🦱 Athlete demographics (age, gender, sport)
+-** 👩‍🦱 Athlete demographics (age, gender, sport)
 
-📈 Sports growth & popularity trends
+-** 📈 Sports growth & popularity trends
 
-🕒 Olympic history & participation
+-** 🕒 Olympic history & participation
 
-🛠️ Tech Stack
+## 🛠️ Tech Stack
 
-Azure Data Factory – Data ingestion & orchestration
+- **Azure Data Factory** – Data ingestion & orchestration
 
-Azure Data Lake Storage Gen2 – Raw & curated zones
+- **Azure Data Lake Storage Gen2** – Raw & curated zones
 
-Azure Databricks (PySpark) – Data cleaning & transformation
+- **Azure Databricks (PySpark)** – Data cleaning & transformation
 
-Azure Synapse Analytics – Data modeling & SQL queries
+- **Azure Synapse Analytics** – Data modeling & SQL queries
 
-Power BI / Tableau / Looker Studio – Dashboarding & visualization
+- **Power BI / Tableau / Looker Studio** – Dashboarding & visualization
 
-SQL & Python (PySpark) – ETL & analytics
-📊 Key Insights Delivered
+- **SQL & Python (PySpark)** – ETL & analytics
+  
+## 📊 Key Insights Delivered
 
-Country medal tallies across Olympic history
+- Country medal tallies across Olympic history
 
-Gender participation trends over decades
+- Gender participation trends over decades
 
-Athlete performance by age, sport, and country
+- Athlete performance by age, sport, and country
 
-Evolution of Olympic sports & popularity trends
+- Evolution of Olympic sports & popularity trends
+
+  ## 📂 Project Workflow
 flowchart LR
 A[Data Sources] --> B[Azure Data Factory]
 B --> C[Data Lake - Raw Zone]
