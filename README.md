@@ -2,10 +2,10 @@
 
 ## 📌 Project Overview
 
-![project Pipeline](https://github.com/emmanuel-cheruiyot737/azure-data-engineer---multi-source/blob/main/cherry.png)
+![project Pipeline](https://github.com/emmanuel-cheruiyot737/azure-data-engineer---multi-source/blob/main/cherry1.png)
 
 
-This project demonstrates an end-to-end data engineering pipeline on Microsoft Azure to analyze Olympic Games data. It covers the entire data lifecycle **— ingestion →** **storage →****transformation**→**analytics**→**visualization** enabling insights into medal tallies, athlete performance, gender participation, and sports evolution over time
+This project demonstrates an end-to-end data engineering pipeline on Microsoft Azure to analyze Olympic Games data. It covers the entire data lifecycle **— ingestion → storage → transformation → analytics → visualization** enabling insights into medal tallies, athlete performance, gender participation, and sports evolution over time
 Architecture.
 
 ---
@@ -81,6 +81,8 @@ Architecture.
 - **Power BI / Tableau / Looker Studio** – Dashboarding & visualization
 
 - **SQL & Python (PySpark)** – ETL & analytics
+  
+  ---
 
 ## 🔑 Prerequisites
 
@@ -110,6 +112,8 @@ cd olympic-data-analytics
 **5.** Execute **SQL scripts** in ```/sql/``` to create fact & dimension tables in Synapse.
 
 **6.** Connect **Power BI** to Synapse to build dashboards.
+
+---
 
 ## 🔄 Data Transformation (PySpark ETL in Databricks)
 # Load Raw Data from ADLS
@@ -195,8 +199,10 @@ ORDER BY TotalMedals DESC;
 - Average athlete age varies significantly by sport (e.g., gymnastics vs      marathon).
 
 - Newer sports (e.g., skateboarding, surfing) show rapid growth in            participation.
-
-  ## ✅ Learnings
+  
+---
+ 
+ ## ✅ Learnings
 
 - Designed and implemented a **Medallion Architecture** (Raw → Curated → Analytics).
 
@@ -217,6 +223,8 @@ ORDER BY TotalMedals DESC;
   
 ## Sample Dashboard
 
+---
+
 (Add screenshots of your Power BI/Tableau dashboards here for visual appeal)
 
 ## Skills Demonstrated
@@ -235,14 +243,20 @@ ORDER BY TotalMedals DESC;
 
 - End-to-End Pipeline Development
 
- ## 📥 Dataset
+  ---
+
+## 📥 Dataset
 
 Source: Olympic Data from Kaggle
  (or IOC APIs / historical repositories)
 
+---
+
 ## 🤝 Contributing
 
 Pull requests are welcome! For major changes, please open an issue first to discuss what you’d like to change
+
+---
 
 ## 📜 License
 
