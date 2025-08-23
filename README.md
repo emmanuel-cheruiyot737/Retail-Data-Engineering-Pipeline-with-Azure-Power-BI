@@ -26,13 +26,13 @@ Architecture.
 
 -**Visualization (Power BI / Looker Studio / Tableau)** – Interactive dashboards showing:
 
--** 🥇 Country medal leaderboards
+  - 🥇 Country medal leaderboards
 
--** 👩‍🦱 Athlete demographics (age, gender, sport)
+  - 👩‍🦱 Athlete demographics (age, gender, sport)
 
--** 📈 Sports growth & popularity trends
+  - 📈 Sports growth & popularity trends
 
--** 🕒 Olympic history & participation
+  - 🕒 Olympic history & participation
 
 ## 🛠️ Tech Stack
 
