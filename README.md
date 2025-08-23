@@ -1,29 +1,32 @@
 # azure-data-engineer---multi-source
 
-##📌 Project Overview
+## 📌 Project Overview
 
 ![project Pipeline](https://github.com/emmanuel-cheruiyot737/azure-data-engineer---multi-source/blob/main/cherry.png)
 
+
 This project demonstrates an end-to-end data engineering pipeline on Microsoft Azure to analyze Olympic Games data. It covers the entire data lifecycle — ingestion → storage → transformation → analytics → visualization — enabling insights into medal tallies, athlete performance, gender participation, and sports evolution over time
-Architecture
+Architecture.
 
-The solution follows a modern data engineering architecture on Azure:
+---
 
-Data Source – Olympic datasets (CSV, JSON, APIs, historical repositories).
+## The solution follows a modern data engineering architecture on Azure:
 
-Ingestion (Azure Data Factory) – Automated pipelines for data ingestion, scheduling, and monitoring.
+-**Data Source** – Olympic datasets (CSV, JSON, APIs, historical repositories).
 
-Raw Storage (Azure Data Lake Gen2 - Raw Zone) – Stores unprocessed data for traceability.
+-**Ingestion (Azure Data Factory)**  – Automated pipelines for data ingestion, scheduling, and monitoring.
 
-Transformation (Azure Databricks) – PySpark notebooks for cleaning, joining, and applying business rules (e.g., medal aggregation, athlete demographics).
+-**Raw Storage (Azure Data Lake Gen2 - Raw Zone)** – Stores unprocessed data for traceability.
 
-Curated Storage (Azure Data Lake Gen2 - Curated Zone) – Stores structured and analytics-ready datasets.
+-**Transformation (Azure Databricks)** – PySpark notebooks for cleaning, joining, and applying business rules (e.g., medal aggregation, athlete demographics).
 
-Analytics & Querying (Azure Synapse Analytics) – Star schema modeling, SQL queries for medal tallies, athlete performance, and country comparisons.
+-**Curated Storage (Azure Data Lake Gen2 - Curated Zone)** – Stores structured and analytics-ready datasets.
 
-Visualization (Power BI / Looker Studio / Tableau) – Interactive dashboards showing:
+-**Analytics & Querying (Azure Synapse Analytics)** – Star schema modeling, SQL queries for medal tallies, athlete performance, and country comparisons.
 
-🥇 Country medal leaderboards
+-**Visualization (Power BI / Looker Studio / Tableau)** – Interactive dashboards showing:
+
+## 🥇 Country medal leaderboards
 
 👩‍🦱 Athlete demographics (age, gender, sport)
 
