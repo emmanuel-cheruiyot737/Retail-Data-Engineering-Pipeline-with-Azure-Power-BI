@@ -66,6 +66,8 @@ Architecture.
 |-- D --> E[Data Lake - Curated Zone]
 |-- E --> F[Azure Synapse Analytics]
 |-- F --> G[Power BI/Tableau Dashboards]
+```
+---
 
 ## Sample Dashboard
 
