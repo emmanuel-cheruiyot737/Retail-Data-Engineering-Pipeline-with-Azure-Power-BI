@@ -59,7 +59,7 @@ Architecture.
 - Evolution of Olympic sports & popularity trends
 
   ## 📂 Project Workflow
-'''flowchart LR
+```flowchart LR
 |-- A[Data Sources] --> B[Azure Data Factory]
 |-- B --> C[Data Lake - Raw Zone]
 |-- C --> D[Azure Databricks - PySpark ETL]
@@ -94,11 +94,11 @@ Source: Olympic Data from Kaggle
  
 ## 📈 Future Improvements
 
-Add real-time ingestion with **Azure Event Hub**
+- Add real-time ingestion with **Azure Event Hub**
 
-Integrate **Machine Learning models** for athlete performance predictions
+- Integrate **Machine Learning models** for athlete performance predictions
 
-Deploy dashboards with **Power BI** Embedded for wider access
+- Deploy dashboards with **Power BI** Embedded for wider access
 
 ## 🤝 Contributing
 
