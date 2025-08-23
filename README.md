@@ -1,5 +1,7 @@
 # azure-data-engineer---multi-source
+
 ##📌 Project Overview
+
 ![project Pipeline](https://github.com/emmanuel-cheruiyot737/azure-data-engineer---multi-source/blob/main/cherry.png)
 
 This project demonstrates an end-to-end data engineering pipeline on Microsoft Azure to analyze Olympic Games data. It covers the entire data lifecycle — ingestion → storage → transformation → analytics → visualization — enabling insights into medal tallies, athlete performance, gender participation, and sports evolution over time
