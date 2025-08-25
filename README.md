@@ -1,7 +1,7 @@
 # Retail Data Engineering Project Documentation
 # 📌 Project Overview
 
-This project implements an **end-to-end retail data pipeline** using Azure Data Engineering tools. The pipeline ingests data from multiple sources, transforms it into a structured data lake format (Bronze → Silver → Gold layers), and enables business reporting through Power BI.
+![Architure](https://github.com/emmanuel-cheruiyot737/killer-boy-data-enginneering/blob/main/cherry_proj1.png) This project implements an **end-to-end retail data pipeline** using Azure Data Engineering tools. \ The pipeline ingests data from multiple sources, transforms it into a structured data lake format (Bronze → Silver → Gold layers), and enables business reporting through Power BI.
 
 ---
 
