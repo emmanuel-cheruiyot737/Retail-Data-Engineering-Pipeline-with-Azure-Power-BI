@@ -1,56 +1,183 @@
-# tokyo-olympic-azure-data-engineering-project
+# Retail Data Engineering Project Documentation
+# 📌 Project Overview
 
-## 📌 Project Overview
-
-![project Pipeline](https://github.com/emmanuel-cheruiyot737/azure-data-engineer---multi-source/blob/main/cherry1.png)
-
-This project demonstrates an end-to-end **data engineering pipeline on Microsoft Azure** to analyze the **Tokyo 2021 Olympics datasets**.  
-
-It covers the entire data lifecycle **— ingestion → storage → transformation → analytics → visualization** enabling insights into medal tallies, athlete performance, gender participation, coach/team distribution, and sports evolution.
+This project implements an **end-to-end retail data pipeline** using Azure Data Engineering tools. The pipeline ingests data from multiple sources, transforms it into a structured data lake format (Bronze → Silver → Gold layers), and enables business reporting through Power BI.
 
 ---
 
-## 🏗️ Tokyo Olympics Data Engineering Architecture
+## Tech Stack:
 
-- **Data Source** – Olympic datasets from Kaggle (Athletes.csv, Coaches.csv, EntriesGender.csv, Medals.csv, Teams.csv).
+- **Azure Data Factory (ADF)** → Data ingestion
 
-- **Ingestion (Azure Data Factory)** – Automated pipelines for data ingestion, scheduling, and monitoring.
+- **Azure Data Lake Storage (ADLS)** → Central data lake (Bronze/Silver/Gold)
 
-- **Raw Storage (Azure Data Lake Gen2 - Raw Zone)** – Stores unprocessed data for traceability.
+- **Azure Databricks** → Data cleaning, transformation, aggregation
 
-- **Transformation (Azure Databricks)** – PySpark notebooks for cleaning, joining, and applying business rules (e.g., medal aggregation, gender distribution, team analysis).
+- **Power BI** → Reporting & dashboards
 
-- **Curated Storage (Azure Data Lake Gen2 - Curated Zone)** – Stores structured and analytics-ready datasets.
+## 📂 Data Sources
 
-- **Analytics & Querying (Azure Synapse Analytics)** – Star schema modeling, SQL queries for medal tallies, athlete participation, and country comparisons.
+**1. Azure SQL Database**
 
-- **Visualization (Power BI / Looker Studio / Tableau)** – Interactive dashboards showing:
+ - **Transactions** (sales data)
 
-  - 🥇 Country medal leaderboards  
-  - 👩‍🦱 Athlete demographics (age, gender, sport)  
-  - 🏋️ Gender participation by discipline  
-  - 🧑‍🤝‍🧑 Team & coach distribution per country  
-  - 📈 Sports growth & popularity trends  
+ - **Stores** (store details)
 
----
+- **Products** (catalog details)
 
-## 📊 Key Insights Delivered
+**2. API / JSON**
 
-- Country medal tallies for Tokyo 2021  
-- Gender participation across all disciplines  
-- Athlete performance by age, sport, and country  
-- Coach distribution per sport and country  
-- Team participation and size analysis  
-- Evolution of Olympic sports popularity  
+- **Customers** (customer master data in JSON format)
 
 ---
 
-## 📂 Project Workflow
+## 🏗️ Architecture
+```
+graph LR
+A[Azure SQL - Transactions] --> B[ADF]
+C[Azure SQL - Stores] --> B
+D[Azure SQL - Products] --> B
+E[API - Customers JSON] --> B
+B --> F[ADLS - Bronze]
+F --> G[Databricks - Silver Layer]
+G --> H[Databricks - Gold Layer]
+H --> I[Power BI Reports]
+```
+---
 
-```flowchart LR
-A[Data Sources] --> B[Azure Data Factory]
-B --> C[Data Lake - Raw Zone]
-C --> D[Azure Databricks - PySpark ETL]
-D --> E[Data Lake - Curated Zone]
-E --> F[Azure Synapse Analytics]
-F --> G[Power BI/Tableau Dashboards]
+- **Bronze Layer →** Raw ingestion from SQL & JSON
+
+- **Silver Layer →** Cleaned, standardized, joined dataset
+
+- **Gold Layer →** Aggregated business-level KPIs for reporting
+
+## ⚙️ Data Processing
+**Bronze Layer**
+
+- Raw parquet files from ADF ingestion
+
+- Stores, Products, Transactions, Customers as-is
+
+**Silver Layer**
+
+- Cleaned using PySpark (```retail projects - multiple tables (1).py```):
+
+- Schema alignment (casting datatypes)
+
+- Removing duplicates
+
+- Joining customers, stores, products, transactions
+
+- Adding derived column: ```total_amount = quantity * price```
+
+**Gold Layer**
+
+- Aggregated metrics created:
+
+- total_quantity_sold
+
+- total_sales_amount
+
+- number_of_transactions
+
+- average_transaction_value
+
+Stored as **Delta tables** for optimized analytics.
+
+---
+
+## 📊 Business Requirements & KPIs
+**1. Total Sales by Store and Category**
+
+- **Metric:** SUM(total_sales_amount)
+
+- **Dimensions:** Store, Category
+
+- **Visualization:** Grouped Bar Chart
+
+**2. Daily Sales Trend by Product**
+
+ -**Metric:** SUM(total_sales_amount)
+
+ - **Dimensions:** Date, Product
+
+ - **Visualization:** Line Chart (time series)
+
+**3. Average Order Value per Store**
+
+ - **Metric:** ```SUM(total_sales_amount) / COUNT(transaction_id)```
+
+ - **Visualization:** Column Chart (per store)
+
+**4. Heatmap: Store vs Sales**
+
+- **Metric:** SUM(total_sales_amount)
+
+- **Dimensions:** Store × Product/Category
+
+- **Visualization:** Heatmap (intensity by sales)
+
+---  
+
+## 📑 Power BI Reporting
+
+- Connect Power BI to **Gold Layer Delta tables**
+
+- Create dashboard with:
+
+  - 📊 Sales by Store & Category
+
+  - 📈 Daily Sales Trend by Product
+
+  - 💰 AOV per Store
+
+  - 🔥 Heatmap: Store vs Sales
+
+## 🚀 Deployment Steps
+
+**1.** Deploy SQL schema & sample data (```SCRIPT SQL.txt```)
+
+**2.** Upload ```customers.json``` to API/Blob for ingestion
+
+**3.** Configure ADF pipelines:
+
+ - Copy data from SQL & JSON to ADLS Bronze
+
+**4.** Run Databricks notebook (```retail projects - multiple tables (1).py```)
+
+ - Create Silver & Gold tables
+
+**5.** Connect Power BI → Gold Layer Delta tables
+
+Build dashboards as per KPIs
+
+---
+
+## 📦 Repository Structure
+
+```
+
+├── customers.json                  # Customer data (JSON)
+├── SCRIPT SQL.txt                  # SQL schema + inserts
+├── retail projects - multiple tables (1).py   # Databricks ETL script
+├── docs/
+│   ├── architecture.png            # Architecture diagram
+│   └── dashboard_wireframes.png    # Power BI mockups
+└── README.md                       # Project documentation
+
+```
+
+---
+
+## 📌 Future Enhancements
+
+- Automate pipeline scheduling with ADF triggers
+
+- Add incremental data loads (CDC for transactions)
+
+- Implement role-based security in Power BI
+
+- Integrate ML models for demand forecasting
+
+- Author: Retail Data Engineering Team
+---
