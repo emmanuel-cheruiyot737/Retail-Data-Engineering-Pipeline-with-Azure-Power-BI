@@ -9,7 +9,7 @@
 
 # 📌 Project Overviev
 
-![Architure](cherry_proj1.png) This project implements an **end-to-end retail data pipeline** using Azure Data Engineering tools such as **Azure Data Factory (ADF), Azure Data Lake Storage(ADLS), Azure Databricks and Power BI.** 
+![Architure](cherry_proj1.png) This project implements an **end-to-end retail data pipeline** on Azure. Data Engineering tools such as **Azure Data Factory (ADF), Azure Data Lake Storage(ADLS), Azure Databricks and Power BI.** 
 The pipeline ingests data from multiple sources, transforms it into a structured **data lake format (Bronze → Silver → Gold layers),** and enables interactive **business reporting and analytics** through Power BI dashboards.
 
 ---
