@@ -1,4 +1,5 @@
-# Retail Data Engineering Project Documentation
+# Retail Data Engineering Project
+
 # 📌 Project Overview
 
 ![Architure](https://github.com/emmanuel-cheruiyot737/killer-boy-data-enginneering/blob/main/cherry_proj1.png) This project implements an **end-to-end retail data pipeline** using Azure Data Engineering tools such as **Azure Data Factory (ADF), Azure Data Lake Storage(ADLS), Azure Databricks and Power BI.** 
@@ -6,30 +7,21 @@ The pipeline ingests data from multiple sources, transforms it into a structured
 
 ---
 
-## Tech Stack & Azure Services Used
+## ⚙️ Tech Stack & Azure Services Used
 
-### **🔹Tech Stack**
-
+###  **🔹Tech Stack**
 - **Python (PySpark) –** Data cleaning, transformations, aggregations
-
- - **SQL –** Source database schema & queries
-
- - **JSON / API –** Customer master data ingestion
-
- - **Delta Lake –** Optimized storage format for Silver & Gold layers
-
- - **Power BI –** Interactive dashboards & reporting
+- **SQL –** Source database schema & queries
+- **JSON / API –** Customer master data ingestion
+- **Delta Lake –** Optimized storage format for Silver & Gold layers
+- **Power BI –** Interactive dashboards & reporting
 
 ### **🔹 Azure Services Used**
 
 - **Azure Data Factory (ADF) →** Orchestration Data ingestion from SQL DB & API
-
 - **Azure Data Lake Storage (ADLS) →** Central data lake with Bronze, Silver, Gold zones
-
 - **Azure Databricks →** Data cleaning, transformation, aggregation and data engineering(ETL pipeline with PySpark)
-
 - **Azure SQL Database →** Source system for transactions, products, and stores
-
 - **Power BI** → Business intelligence, visualization, Reporting & dashboards
 
 ---
@@ -37,15 +29,11 @@ The pipeline ingests data from multiple sources, transforms it into a structured
 ## 📂 Data Sources
 
 **1. Azure SQL Database**
-
- - **Transactions** (sales data)
-
- - **Stores** (store details)
-
+- **Transactions** (sales data)
+- **Stores** (store details)
 - **Products** (catalog details)
 
 **2. API / JSON**
-
 - **Customers** (customer master data in JSON format)
 
 ---
@@ -64,154 +52,108 @@ H --> I[Power BI Reports]
 ```
 
 - **Bronze Layer →** Raw ingestion from SQL & JSON
-
 - **Silver Layer →** Cleaned, standardized, joined dataset
-
 - **Gold Layer →** Aggregated business-level KPIs for reporting
 
 ---
 
 ## ⚙️ Data Processing
-**Bronze Layer**
 
-- Raw data files store in ADls from SQL DB & JSON API
+### Bronze Layer
+- **Objective:** Store raw data files in ADLS from SQL DB & JSON API.
+- **File Formats:** Parquet (for SQL data) and JSON/Parquet (for customer data).
 
-- File format: Parquet(SQL data) & JSON/Parquet(customers)
-
-**Silver Layer**
-
-- Cleaned using PySpark (```retail projects - multiple tables (1).py```):
-
-- Schema alignment (casting datatypes)
-
-- Removing duplicates
-
-- Joining customers, stores, products, transactions
-
-- Adding derived column: ```total_amount = quantity * price```
+### Silver Layer
+- **ETL Process:** Cleans using PySpark (`retail projects - multiple tables (1).py`).
+  - Schema alignment (casting datatypes)
+  - Removing duplicates
+  - Joining of customers, stores, products, and transactions
+  - Adding derived column: `total_amount = quantity * price`
 
 **Gold Layer**
-
-- Aggregated metrics created:
-
-- total_quantity_sold
-
-- total_sales_amount
-
-- number_of_transactions
-
-- average_transaction_value
-
-Stored as **Delta tables** for optimized analytics.
+- **Aggregation:** Compute business KPIs:
+  - `total_quantity_sold`
+  - `total_sales_amount`
+  - `number_of_transactions`
+  - `average_transaction_value`
+- **Storage:** Persisted as Delta tables to enable optimized analytics.
 
 ---
 
 ## 📊 Business Requirements & KPIs
-**1. Total Sales by Store and Category**
 
-- **Metric:** SUM(total_sales_amount)
+1. **Total Sales by Store and Category**
+   - **Metric:** SUM(total_sales_amount)
+   - **Dimensions:** Store, Category
+   - **Visualization:** Grouped Bar Chart
 
-- **Dimensions:** Store, Category
+2. **Daily Sales Trend by Product**
+   - **Metric:** SUM(total_sales_amount)
+   - **Dimensions:** Date, Product
+   - **Visualization:** Line Chart (time series)
 
-- **Visualization:** Grouped Bar Chart
+3. **Average Order Value per Store**
+   - **Metric:** SUM(total_sales_amount) / COUNT(transaction_id)
+   - **Visualization:** Column Chart (per store)
 
-**2. Daily Sales Trend by Product**
-
- -**Metric:** SUM(total_sales_amount)
-
- - **Dimensions:** Date, Product
-
- - **Visualization:** Line Chart (time series)
-
-**3. Average Order Value per Store**
-
- - **Metric:** ```SUM(total_sales_amount) / COUNT(transaction_id)```
-
- - **Visualization:** Column Chart (per store)
-
-**4. Heatmap: Store vs Sales**
-
-- **Metric:** SUM(total_sales_amount)
-
-- **Dimensions:** Store × Product/Category
-
-- **Visualization:** Heatmap (intensity by sales)
-
+4. **Heatmap: Store vs Sales**
+   - **Metric:** SUM(total_sales_amount)
+   - **Dimensions:** Store × Product/Category
+   - **Visualization:** Heatmap (color intensity representing sales)
 ---  
 
 ## 📑 Power BI Reporting
 
-- Connect Power BI to **Gold Layer Delta tables**
+Directly connect Power BI to the Gold Layer Delta tables to create interactive dashboards, including:
 
-- Create dashboard with:
+- **Sales by Store & Category**
+- **Daily Sales Trend by Product**
+- **Average Order Value per Store**
+- **Heatmap of Store vs Sales**
 
-  - 📊 Sales by Store & Category
-
-  - 📈 Daily Sales Trend by Product
-
-  - 💰 AOV per Store
-
-  - 🔥 Heatmap: Store vs Sales
 
 ---
 ## 🚀 Deployment Steps
 
-**1.** Deploy SQL schema & sample data (```SCRIPT SQL.txt```)
-
-**2.** Upload ```customers.json``` to API/Blob for ingestion
-
-**3.** Configure ADF pipelines:
-
- - Copy data from SQL & JSON to ADLS Bronze
-
-**4.** Run Databricks notebook (```retail projects - multiple tables (1).py```)
-
- - Create Silver & Gold tables
-
-**5.** Connect Power BI → Gold Layer Delta tables
-
-Build dashboards as per KPIs
+1. **Deploy SQL Schema & Sample Data**
+   - Use `SCRIPT SQL.txt` to create source tables (products, stores, transactions) and insert sample data.
+2. **Upload Customer Data**
+   - Place `customers.json` into the appropriate location (API/Blob) for ingestion.
+3. **Configure and Run ADF Pipelines**
+   - The pipeline copies data from SQL and JSON sources into the ADLS Bronze layer.
+4. **Execute Databricks Notebook**
+   - Run `retail projects - multiple tables (1).py` to transform Bronze data into Silver and create Gold tables.
+5. **Connect Power BI**
+   - Link Power BI to the Gold Layer Delta tables and build dashboards based on KPIs.
 
 ---
 
 ## 📜 Code & Notebooks
 
-**1. SQL Script →** ```SCRIPT SQL.txt```
-
-- Creates source tables (products, stores, transactions) and inserts sample   data.
-
-**2. JSON Data →** ```customers.json```
-
- - Provides sample customer master data for API ingestion.
-
-**3. Databricks Notebook →**  ```retail projects - multiple tables (1).py```
-
-- Implements ETL pipeline:
-
-- Ingests Bronze data
-
-- Cleans and standardizes into Silver
-
-- Aggregates business KPIs into Gold
+1. **SQL Script → `SCRIPT SQL.txt`**
+   - Creates necessary source tables and inserts sample data.
+2. **JSON Data → `customers.json`**
+   - Contains sample customer master data for API ingestion.
+3. **Databricks Notebook → `retail projects - multiple tables (1).py`**
+   - Implements the ETL pipeline:
+     - Ingests raw Bronze data
+     - Cleans and standardizes data into Silver
+     - Aggregates metrics for business KPIs into Gold
 
 ---
 
 ## 🖥️ PySpark ETL Highlights
 
 **Load Bronze Data:**
-
-```
+```python
 df_transactions = spark.read.parquet('/mnt/retail_project/bronze/transaction/')
 df_products = spark.read.parquet('/mnt/retail_project/bronze/product/')
 df_stores = spark.read.parquet('/mnt/retail_project/bronze/store/')
 df_customers = spark.read.parquet('/mnt/retail_project/bronze/customer/')
-
 ```
 
 **Transform into Silver:**
-
-```
-
+```python
 from pyspark.sql.functions import col
 
 df_transactions = df_transactions.select(
@@ -223,15 +165,13 @@ df_transactions = df_transactions.select(
     col("transaction_date").cast("date")
 )
 
-
 df_customers = df_customers.select(
     "customer_id", "first_name", "last_name", "email", "city", "registration_date"
 ).dropDuplicates(["customer_id"])
 ```
 
-**Join All Data (Silver):**
-
-```
+**Join All Data (Silver Layer):**
+```python
 df_silver = df_transactions \
     .join(df_customers, "customer_id") \
     .join(df_products, "product_id") \
@@ -239,13 +179,11 @@ df_silver = df_transactions \
     .withColumn("total_amount", col("quantity") * col("price"))
 ```
 
-**Gold Aggregates:**
-
-```
+**Gold Aggregations:**
+```python
 from pyspark.sql.functions import sum, countDistinct, avg
 
-
-gold_df = silver_df.groupBy(
+gold_df = df_silver.groupBy(
     "transaction_date", "product_id", "product_name", "category",
     "store_id", "store_name", "location"
 ).agg(
@@ -253,64 +191,61 @@ gold_df = silver_df.groupBy(
     sum("total_amount").alias("total_sales_amount"),
     countDistinct("transaction_id").alias("number_of_transactions"),
     avg("total_amount").alias("average_transaction_value")
-);
+)
 ```
+
 ---
+
 ## 📊 Power BI Dashboards
 
-![Dashboard](https://github.com/emmanuel-cheruiyot737/Retail-Data-Engineering-Pipeline-with-Azure-Power-BI/blob/main/Dashboard.png)
+- **Key Visuals:**
+  - Sales by Store & Category
+  - Daily Sales Trend by Product
+  - Average Order Value per Store
+  - Heatmap: Store vs Sales
+
+*Enhancement Suggestion: Embed screenshots or interactive mockups for readers to get a direct preview of the dashboards.*
 
 ---
 
 ## 🔐 Security & Governance
 
-- **Data Security:** Enforce **RBAC** on ADLS and Databricks access.
-
-- **Data Encryption:** Ensure data is encrypted at rest (ADLS, SQL) and in transit (HTTPS/SSL).
-
-- **Data Governance:** Integrate with Azure Purview for data catalog, lineage, and classification.
-
-- **Power BI:** Apply **Row-Level Security (RLS)** for controlled data visibility.
+- **Data Security:** Implement Role-Based Access Control (RBAC) on ADLS and Databricks.
+- **Data Encryption:** Ensure encryption at rest for data in ADLS and SQL, and in transit using HTTPS/SSL.
+- **Data Governance:** Integrate with Azure Purview for comprehensive data cataloging, lineage tracking, and classification.
+- **Power BI:** Utilize Row-Level Security (RLS) to manage and control data access.
 
 ---
 
 ## 📦 Repository Structure
 
 ```
-
 ├── customers.json                  # Customer data (JSON)
-├── SCRIPT SQL.txt                  # SQL schema + inserts
+├── SCRIPT SQL.txt                  # SQL schema and sample inserts
 ├── retail projects - multiple tables (1).py   # Databricks ETL script
 ├── docs/
-│   ├── architecture.png            # Architecture diagram
-│   └── dashboard_wireframes.png    # Power BI mockups
-└── README.md                       # Project documentation
-
+│   ├── architecture.png            # Embedded architecture diagram
+│   └── dashboard_wireframes.png    # Mockups of Power BI dashboards
+└── README.md                       # Project documentation (this file)
 ```
 
 ---
 
 ## 📈 Results & Insights
 
-- Identified top-performing stores and categories by sales
-
-- Analyzed daily sales trends across products
-
-- Measured average order value per store to assess revenue efficiency
-
-- Visualized store vs sales heatmap to spot regional strengths
+- **Sales Performance:** Identification of top-performing stores and product categories.
+- **Trend Analysis:** Detailed daily sales trends across various products.
+- **Order Value Analysis:** Measurement of average order value per store to evaluate revenue efficiency.
+- **Regional Strengths:** Visualization of store performance against sales using heatmaps to understand regional variations.
 
 ---
 
 ## 📌 Future Enhancements
 
-- Automate pipeline scheduling with ADF triggers
+- **Pipeline Scheduling:** Automate pipeline triggers via ADF for streamlined scheduling.
+- **Incremental Data Loads:** Implement Change Data Capture (CDC) for transactions to optimize data ingestion.
+- **Enhanced Security:** Further refine RBAC and integrate additional compliance measures.
+- **Analytics Expansion:** Incorporate machine learning models for demand forecasting.
+- **Data Warehouse Integration:** Extend the Gold Layer functionality into Azure Synapse for enterprise-grade warehousing.
 
-- Add incremental data loads (CDC for transactions)
-
-- Implement role-based security in Power BI
-
-- Integrate ML models for demand forecasting
-
-- Extend Gold Layer to Azure Synapse for enterprise warehousing
 ---
