@@ -204,7 +204,7 @@ gold_df = df_silver.groupBy(
   - Average Order Value per Store
   - Heatmap: Store vs Sales
 
-*Enhancement Suggestion: Embed screenshots or interactive mockups for readers to get a direct preview of the dashboards.*
+![Dashboard](Dashboard.png)
 
 ---
 
