@@ -62,13 +62,14 @@ F --> G[Databricks - Silver Layer]
 G --> H[Databricks - Gold Layer]
 H --> I[Power BI Reports]
 ```
----
 
 - **Bronze Layer →** Raw ingestion from SQL & JSON
 
 - **Silver Layer →** Cleaned, standardized, joined dataset
 
 - **Gold Layer →** Aggregated business-level KPIs for reporting
+
+---
 
 ## ⚙️ Data Processing
 **Bronze Layer**
@@ -152,6 +153,7 @@ Stored as **Delta tables** for optimized analytics.
 
   - 🔥 Heatmap: Store vs Sales
 
+---
 ## 🚀 Deployment Steps
 
 **1.** Deploy SQL schema & sample data (```SCRIPT SQL.txt```)
@@ -256,6 +258,8 @@ gold_df = silver_df.groupBy(
 ---
 ## 📊 Power BI Dashboards
 
+![Dashboard](https://github.com/emmanuel-cheruiyot737/Retail-Data-Engineering-Pipeline-with-Azure-Power-BI/blob/main/Dashboard.png)
+
 ---
 
 ## 🔐 Security & Governance
@@ -295,6 +299,8 @@ gold_df = silver_df.groupBy(
 - Measured average order value per store to assess revenue efficiency
 
 - Visualized store vs sales heatmap to spot regional strengths
+
+---
 
 ## 📌 Future Enhancements
 
