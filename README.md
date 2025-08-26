@@ -1,6 +1,13 @@
 # Retail Data Engineering Project
 
-# 📌 Project Overview
+![Databricks](https://img.shields.io/badge/Databricks-Platform-red) 
+![SQL](https://img.shields.io/badge/SQL-Queries-green)
+![Python](https://img.shields.io/badge/Python-3.9-blue) 
+![PySpark](https://img.shields.io/badge/PySpark-ETL-orange) 
+![PowerBI](https://img.shields.io/badge/PowerBI-Dashboard-yellow) 
+---
+
+# 📌 Project Overviev
 
 ![Architure](cherry_proj1.png) This project implements an **end-to-end retail data pipeline** using Azure Data Engineering tools such as **Azure Data Factory (ADF), Azure Data Lake Storage(ADLS), Azure Databricks and Power BI.** 
 The pipeline ingests data from multiple sources, transforms it into a structured **data lake format (Bronze → Silver → Gold layers),** and enables interactive **business reporting and analytics** through Power BI dashboards.
